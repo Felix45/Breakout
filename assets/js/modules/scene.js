@@ -7,14 +7,15 @@ class Scene {
 
   constructor(canvas) {
     this.canvas = canvas;
+    this.paddle = '';
     this.ctx = this.canvas.getContext('2d');
   }
 
   drawScene = () => {
     this.clearScene();
     this.ctx.fillStyle = '#f00';
-    const paddle = new GamePaddle(Scene.SCENE_WIDTH, Scene.SCENE_HEIGHT);
-    paddle.drawPaddle(this.ctx);
+    this.paddle = new GamePaddle(Scene.SCENE_WIDTH, Scene.SCENE_HEIGHT);
+    this.paddle.drawPaddle(this.ctx);
   }
 
   clearScene = () => {
