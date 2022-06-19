@@ -8,11 +8,12 @@
   --dark: #000;
 }
 
-body {
-  display: flex;
-  justify-content: space-around;
+img {
+  display: none;
 }
 
 .container {
+  margin: 150px auto;
+  display: block;
   border: 5px solid var(--dark);
 }
