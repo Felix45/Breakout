@@ -16,10 +16,10 @@ class Scene {
   drawScene = () => {
     this.clearScene();
     this.paddle = new GamePaddle(Scene.SCENE_WIDTH, Scene.SCENE_HEIGHT);
-    this.paddle.drawPaddle(this.ctx);
+    this.paddle.draw(this.ctx);
 
-    this.ball = new Ball(Scene.SCENE_WIDTH, Scene.SCENE_HEIGHT);
-    this.ball.drawBall(this.ctx);
+    this.ball = new Ball(Scene.SCENE_WIDTH, Scene.SCENE_HEIGHT, this);
+    this.ball.draw(this.ctx);
   }
 
   clearScene = () => {
