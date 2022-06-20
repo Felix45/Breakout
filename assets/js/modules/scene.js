@@ -18,7 +18,7 @@ class Scene {
     this.paddle = new GamePaddle(Scene.SCENE_WIDTH, Scene.SCENE_HEIGHT);
     this.paddle.draw(this.ctx);
 
-    this.ball = new Ball(Scene.SCENE_WIDTH, Scene.SCENE_HEIGHT);
+    this.ball = new Ball(Scene.SCENE_WIDTH, Scene.SCENE_HEIGHT, this);
     this.ball.draw(this.ctx);
   }
 

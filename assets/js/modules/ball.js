@@ -1,8 +1,9 @@
 class Ball {
-  constructor(gameWidth, gameHeight) {
+  constructor(gameWidth, gameHeight, game) {
     this.imgBall = document.getElementById('gameball');
     this.width = 15;
     this.height = 15;
+    this.game = game;
     this.gameWidth = gameWidth;
     this.gameHeight = gameHeight;
     this.position = { x: gameWidth / 2 - this.width / 2, y: 0 };
@@ -13,11 +14,12 @@ class Ball {
       ctx.drawImage(this.imgBall, this.position.x, this.position.y, this.width, this.height);
     }
 
-    update = (dt) => {
+    update = () => {
       this.position.x += this.speed.x;
       this.position.y += this.speed.y;
 
       this.checkBorderCollision();
+      this.checkBallPaddleCollision();
     }
 
     checkBorderCollision = () => {
@@ -27,6 +29,20 @@ class Ball {
 
       if (this.position.y + this.height > this.gameHeight || this.position.y < 0) {
         this.speed.y = -this.speed.y;
+      }
+    }
+
+    checkBallPaddleCollision = () => {
+      const ballPosition = this.position.y + this.height;
+
+      const paddleLeftSide = this.game.paddle.position.x;
+      const paddleRightSide = this.game.paddle.position.x + this.game.paddle.width;
+
+      if (ballPosition >= this.game.paddle.position.y
+        && this.position.x >= paddleLeftSide
+        && this.position.x + this.width <= paddleRightSide) {
+        this.speed.y = -this.speed.y;
+        this.position.y = this.game.paddle.position.y - this.height;
       }
     }
 }
