@@ -7,10 +7,12 @@ class GameLoop {
     const deltaTime = timestamp - GameLoop.lastTime;
     GameLoop.lastTime = timestamp;
     gamescene.clearScene();
-    paddle.update(deltaTime);
-    paddle.drawPaddle(gamescene.ctx);
-    ball.update(deltaTime);
-    ball.drawBall(gamescene.ctx);
+
+    const gameObjects = [paddle, ball];
+    gameObjects.forEach((object) => {
+      object.update(deltaTime);
+      object.draw(gamescene.ctx);
+    });
   }
 }
 

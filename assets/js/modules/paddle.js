@@ -9,7 +9,7 @@ class GamePaddle {
     };
   }
 
-  drawPaddle = (ctx) => {
+  draw = (ctx) => {
     ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
   }
 
