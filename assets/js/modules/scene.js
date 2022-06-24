@@ -1,5 +1,6 @@
 import GamePaddle from './paddle.js';
 import Ball from './ball.js';
+import BrickWall from './brick.js';
 
 class Scene {
   static SCENE_WIDTH = 600;
@@ -10,6 +11,7 @@ class Scene {
     this.canvas = canvas;
     this.paddle = '';
     this.ball = '';
+    this.brickwall = '';
     this.ctx = this.canvas.getContext('2d');
   }
 
@@ -20,6 +22,9 @@ class Scene {
 
     this.ball = new Ball(Scene.SCENE_WIDTH, Scene.SCENE_HEIGHT, this);
     this.ball.draw(this.ctx);
+
+    this.brickwall = new BrickWall(Scene.SCENE_WIDTH, Scene.SCENE_HEIGHT, this);
+    this.brickwall.draw(this.ctx);
   }
 
   clearScene = () => {

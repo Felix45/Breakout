@@ -10,9 +10,7 @@ gamescene.drawScene();
 EventHandlers.paddleHandler(gamescene.paddle);
 
 const loop = (timestamp) => {
-  GameLoop.gameLoop({
-    gamescene, timestamp, paddle: gamescene.paddle, ball: gamescene.ball,
-  });
+  GameLoop.gameLoop({ gamescene, timestamp });
   requestAnimationFrame(loop);
 };
 
