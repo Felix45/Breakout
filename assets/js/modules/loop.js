@@ -1,5 +1,4 @@
-import BrickWall from "./brick.js";
-import { level1, buildLevel } from "./levels.js";
+import { level1, buildLevel } from './levels.js';
 
 class GameLoop {
   static lastTime = 0;

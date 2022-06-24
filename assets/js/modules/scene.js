@@ -23,7 +23,7 @@ class Scene {
     this.ball = new Ball(Scene.SCENE_WIDTH, Scene.SCENE_HEIGHT, this);
     this.ball.draw(this.ctx);
 
-    this.brickwall = new BrickWall(this, {x: 10, y: 10});
+    this.brickwall = new BrickWall(this, { x: 10, y: 10 });
     this.brickwall.draw(this.ctx);
   }
 
