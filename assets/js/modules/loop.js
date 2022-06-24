@@ -1,3 +1,6 @@
+import BrickWall from "./brick.js";
+import { level1, buildLevel } from "./levels.js";
+
 class GameLoop {
   static lastTime = 0;
 
@@ -8,7 +11,9 @@ class GameLoop {
     GameLoop.lastTime = timestamp;
     gamescene.clearScene();
 
-    const gameObjects = [gamescene.paddle, gamescene.ball, gamescene.brickwall];
+    const brickwalls = buildLevel(gamescene, level1);
+
+    const gameObjects = [gamescene.paddle, gamescene.ball, ...brickwalls];
     gameObjects.forEach((object) => {
       object.update(deltaTime);
       object.draw(gamescene.ctx);
