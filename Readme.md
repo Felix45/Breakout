@@ -2,6 +2,8 @@
 
 > This is a browser game developed using javascript and inspired by Atari Inc.'s implementation of the same game
 
+![App Screenshot](assets/images/app_screenshot.png)
+
 ## Built With
 
 - HTML
