@@ -18,6 +18,7 @@ class BrickWall {
     if (detectCollision(this.game.ball, this)) {
       this.game.ball.speed.y = -this.game.ball.speed.y;
       this.deleted = true;
+      this.game.score += 20;
     }
   }
 }

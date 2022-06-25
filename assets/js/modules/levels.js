@@ -6,7 +6,7 @@ const buildLevel = (game, level1) => {
   level1.forEach((row, rowIndex) => {
     row.forEach((brick, brickIndex) => {
       if (brick === 1) {
-        bricks.push(new BrickWall(game, { x: 60 * brickIndex, y: 20 * rowIndex + 20 }));
+        bricks.push(new BrickWall(game, { x: 60 * brickIndex, y: 20 * rowIndex + 100 }));
       }
     });
   });

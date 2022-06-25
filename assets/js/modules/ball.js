@@ -13,7 +13,7 @@ class Ball {
   }
 
   reset() {
-    this.position = { x: this.gameWidth / 2 - this.width / 2, y: this.gameHeight / 2 };
+    this.position = { x: this.gameWidth / 2 - this.width / 2, y: 300 };
   }
 
     draw = (ctx) => {
