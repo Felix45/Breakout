@@ -1,3 +1,5 @@
+import detectCollision from './collision.js';
+
 class Ball {
   constructor(gameWidth, gameHeight, game) {
     this.imgBall = document.getElementById('gameball');
@@ -6,8 +8,8 @@ class Ball {
     this.game = game;
     this.gameWidth = gameWidth;
     this.gameHeight = gameHeight;
-    this.position = { x: gameWidth / 2 - this.width / 2, y: 0 };
-    this.speed = { x: 2, y: 2 };
+    this.position = { x: gameWidth / 2 - this.width / 2, y: gameHeight / 2 };
+    this.speed = { x: 4, y: 4 };
   }
 
     draw = (ctx) => {
@@ -33,14 +35,7 @@ class Ball {
     }
 
     checkBallPaddleCollision = () => {
-      const ballPosition = this.position.y + this.height;
-
-      const paddleLeftSide = this.game.paddle.position.x;
-      const paddleRightSide = this.game.paddle.position.x + this.game.paddle.width;
-
-      if (ballPosition >= this.game.paddle.position.y
-        && this.position.x >= paddleLeftSide
-        && this.position.x + this.width <= paddleRightSide) {
+      if (detectCollision(this, this.game.paddle)) {
         this.speed.y = -this.speed.y;
         this.position.y = this.game.paddle.position.y - this.height;
       }
