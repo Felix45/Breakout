@@ -8,6 +8,7 @@ class BrickWall {
     this.position = position;
     this.deleted = false;
     this.brickImage = document.getElementById('brickwall');
+    this.sound = new Audio('../assets/sounds/hit.wav');
   }
 
   draw(ctx) {
@@ -19,6 +20,7 @@ class BrickWall {
       this.game.ball.speed.y = -this.game.ball.speed.y;
       this.deleted = true;
       this.game.score += 20;
+      this.sound.play();
     }
   }
 }
