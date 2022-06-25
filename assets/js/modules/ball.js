@@ -30,7 +30,7 @@ class Ball {
 
     checkBorderCollision = () => {
       if (this.position.y + this.height >= this.gameHeight) {
-        this.game.lives -= this.game.lives;
+        this.game.lives -= 1;
         this.reset();
       }
 
