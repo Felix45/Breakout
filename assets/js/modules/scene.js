@@ -1,6 +1,7 @@
 import GamePaddle from './paddle.js';
 import Ball from './ball.js';
-import BrickWall from './brick.js';
+import { level1, buildLevel } from './levels.js';
+import EventHandlers from './input.js';
 
 class Scene {
   static SCENE_WIDTH = 600;
@@ -9,22 +10,30 @@ class Scene {
 
   constructor(canvas) {
     this.canvas = canvas;
-    this.paddle = '';
-    this.ball = '';
-    this.brickwall = '';
+    this.paddle = new GamePaddle(Scene.SCENE_WIDTH, Scene.SCENE_HEIGHT);
+    this.ball = new Ball(Scene.SCENE_WIDTH, Scene.SCENE_HEIGHT, this);
+    this.brickwall = buildLevel(this, level1);
+    this.gameObjects = [this.paddle, this.ball];
     this.ctx = this.canvas.getContext('2d');
+
+    EventHandlers.paddleHandler(this.paddle);
+  }
+
+  start = () => {
+    this.brickwall = buildLevel(level1);
+    this.gameObjects = [this.ball, this.paddle];
+  }
+
+  update = (dt) => {
+    [...this.gameObjects, ...this.brickwall].forEach((object) => {
+      object.update(dt);
+    });
+
+    this.brickwall = this.brickwall.filter((brick) => !brick.deleted);
   }
 
   drawScene = () => {
-    this.clearScene();
-    this.paddle = new GamePaddle(Scene.SCENE_WIDTH, Scene.SCENE_HEIGHT);
-    this.paddle.draw(this.ctx);
-
-    this.ball = new Ball(Scene.SCENE_WIDTH, Scene.SCENE_HEIGHT, this);
-    this.ball.draw(this.ctx);
-
-    this.brickwall = new BrickWall(this, { x: 10, y: 10 });
-    this.brickwall.draw(this.ctx);
+    [...this.gameObjects, ...this.brickwall].forEach(((object) => object.draw(this.ctx)));
   }
 
   clearScene = () => {

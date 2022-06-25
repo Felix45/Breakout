@@ -25,9 +25,7 @@ class GamePaddle {
     this.speed = 0;
   }
 
-  update = (dt) => {
-    if (!dt) return;
-
+  update = () => {
     this.position.x += this.speed;
 
     if (this.position.x < 0) this.position.x = 0;
