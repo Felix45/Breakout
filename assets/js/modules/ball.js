@@ -8,8 +8,12 @@ class Ball {
     this.game = game;
     this.gameWidth = gameWidth;
     this.gameHeight = gameHeight;
-    this.position = { x: gameWidth / 2 - this.width / 2, y: gameHeight / 2 };
-    this.speed = { x: 4, y: 4 };
+    this.speed = { x: 4, y: -4 };
+    this.reset();
+  }
+
+  reset() {
+    this.position = { x: this.gameWidth / 2 - this.width / 2, y: this.gameHeight / 2 };
   }
 
     draw = (ctx) => {
@@ -25,6 +29,11 @@ class Ball {
     }
 
     checkBorderCollision = () => {
+      if (this.position.y + this.height >= this.gameHeight) {
+        this.game.lives -= this.game.lives;
+        this.reset();
+      }
+
       if (this.position.x + this.width > this.gameWidth || this.position.x < 0) {
         this.speed.x = -this.speed.x;
       }
