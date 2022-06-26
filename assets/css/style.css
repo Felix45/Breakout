@@ -5,7 +5,12 @@
 }
 
 :root {
+  --gold: #ec5242;
   --dark: #000;
+}
+
+body {
+  background-color: var(--dark);
 }
 
 img {
@@ -15,5 +20,5 @@ img {
 .container {
   margin: 150px auto;
   display: block;
-  border: 5px solid var(--dark);
+  border: 10px solid var(--gold);
 }
