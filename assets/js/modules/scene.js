@@ -1,11 +1,11 @@
 import GamePaddle from './paddle.js';
 import Ball from './ball.js';
-import { level1, buildLevel } from './levels.js';
+import { level1, level2, buildLevel } from './levels.js';
 import ScoreBoard from './scoreboard.js';
 import EventHandlers from './input.js';
 
-const GAMESTATE = {
-  PAUSED: 0, RUNNING: 1, MENU: 2, GAMEOVER: 3,
+const GAMESTATE = { 
+  PAUSED: 0, RUNNING: 1, MENU: 2, GAMEOVER: 3, NEWLEVEL: 4
 };
 
 class Scene {
@@ -18,7 +18,7 @@ class Scene {
     this.paddle = new GamePaddle(Scene.SCENE_WIDTH, Scene.SCENE_HEIGHT);
     this.ball = new Ball(Scene.SCENE_WIDTH, Scene.SCENE_HEIGHT, this);
     this.scoreBoard = new ScoreBoard(this, Scene.SCENE_WIDTH, Scene.SCENE_HEIGHT);
-    this.brickwall = buildLevel(this, level1);
+    this.brickwall = buildLevel(this, level2);
     this.gameObjects = [this.paddle, this.ball, this.scoreBoard];
     this.ctx = this.canvas.getContext('2d');
     
@@ -36,7 +36,9 @@ class Scene {
   }
 
   update = () => {
-    if (this.lives === 0) this.gamestate = GAMESTATE.GAMEOVER;
+    if (this.lives === 0) {
+      this.gamestate = GAMESTATE.GAMEOVER;
+    } 
 
     if (this.gamestate === GAMESTATE.PAUSED
       || this.gamestate === GAMESTATE.MENU
@@ -50,13 +52,16 @@ class Scene {
   }
 
   drawScene = () => {
+    this.ctx.rect(0, 0, Scene.SCENE_WIDTH, Scene.SCENE_HEIGHT);
+    this.ctx.fillStyle = '#2a52be';
+    this.ctx.fill();
     [...this.gameObjects, ...this.brickwall].forEach(((object) => object.draw(this.ctx)));
 
     if (this.gamestate === GAMESTATE.PAUSED) {
       this.ctx.rect(0, 0, Scene.SCENE_WIDTH, Scene.SCENE_HEIGHT);
       this.ctx.fillStyle = 'rgba(0,0,0,0.8)';
       this.ctx.fill();
-      this.ctx.font = 'bold 30px courier';
+      this.ctx.font = 'bold   30px courier';
       this.ctx.fillStyle = '#ff0';
       this.ctx.textAlign = 'center';
       this.ctx.fillText('Paused', Scene.SCENE_WIDTH / 2, Scene.SCENE_HEIGHT / 2);
@@ -64,7 +69,7 @@ class Scene {
 
     if (this.gamestate === GAMESTATE.MENU) {
       this.ctx.rect(0, 0, Scene.SCENE_WIDTH, Scene.SCENE_HEIGHT);
-      this.ctx.fillStyle = 'rgba(0,0,0,1)';
+      this.ctx.fillStyle = '#2a52be';
       this.ctx.fill();
       this.ctx.font = 'bold 30px courier';
       this.ctx.fillStyle = 'rgb(255,255,0)';
@@ -74,7 +79,7 @@ class Scene {
 
     if (this.gamestate === GAMESTATE.GAMEOVER) {
       this.ctx.rect(0, 0, Scene.SCENE_WIDTH, Scene.SCENE_HEIGHT);
-      this.ctx.fillStyle = 'rgba(0,0,0,1)';
+      this.ctx.fillStyle = '#2a52be';
       this.ctx.fill();
       this.ctx.font = 'bold 30px courier';
       this.ctx.fillStyle = 'rgb(255,255,0)';
