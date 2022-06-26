@@ -1,11 +1,11 @@
 import GamePaddle from './paddle.js';
 import Ball from './ball.js';
-import { level1, level2, buildLevel } from './levels.js';
+import { level1, buildLevel } from './levels.js';
 import ScoreBoard from './scoreboard.js';
 import EventHandlers from './input.js';
 
-const GAMESTATE = { 
-  PAUSED: 0, RUNNING: 1, MENU: 2, GAMEOVER: 3, NEWLEVEL: 4
+const GAMESTATE = {
+  PAUSED: 0, RUNNING: 1, MENU: 2, GAMEOVER: 3, NEWLEVEL: 4,
 };
 
 class Scene {
@@ -18,10 +18,9 @@ class Scene {
     this.paddle = new GamePaddle(Scene.SCENE_WIDTH, Scene.SCENE_HEIGHT);
     this.ball = new Ball(Scene.SCENE_WIDTH, Scene.SCENE_HEIGHT, this);
     this.scoreBoard = new ScoreBoard(this, Scene.SCENE_WIDTH, Scene.SCENE_HEIGHT);
-    this.brickwall = buildLevel(this, level2);
+    this.brickwall = buildLevel(this, level1);
     this.gameObjects = [this.paddle, this.ball, this.scoreBoard];
     this.ctx = this.canvas.getContext('2d');
-    
 
     this.gamestate = GAMESTATE.MENU;
     this.lives = 3;
@@ -31,14 +30,14 @@ class Scene {
   }
 
   start = () => {
-    if (this.gamestate !== GAMESTATE.MENU ) return;
+    if (this.gamestate !== GAMESTATE.MENU) return;
     this.gamestate = GAMESTATE.RUNNING;
   }
 
   update = () => {
     if (this.lives === 0) {
       this.gamestate = GAMESTATE.GAMEOVER;
-    } 
+    }
 
     if (this.gamestate === GAMESTATE.PAUSED
       || this.gamestate === GAMESTATE.MENU

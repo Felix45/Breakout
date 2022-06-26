@@ -12,13 +12,12 @@ class Ball {
     this.reset();
     this.sound = new Audio('../assets/sounds/collide.wav');
     this.fall = new Audio('../assets/sounds/falling.wav');
-    
   }
 
   reset() {
     this.position = { x: this.gameWidth / 2 - this.width / 2, y: 300 };
   }
- 
+
     draw = (ctx) => {
       ctx.drawImage(this.imgBall, this.position.x, this.position.y, this.width, this.height);
     }
