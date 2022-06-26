@@ -70,6 +70,8 @@ Give a ⭐️ if you like this project!
 ## Acknowledgments
 
 - Hat tip to [Microverse](https://bit.ly/MicroverseTN) for helping me keep the coding fire burning
+- Hat tip to [MixKit](https://mixkit.co/free-sound-effects/game/) for free game sound effects used in this project
+- Hat tip to [Freecodecamp Channel](https://www.youtube.com/c/Freecodecamp) for wonderful game tutorials used in this project
 
 
 ## 📝 License
