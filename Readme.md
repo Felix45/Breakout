@@ -12,7 +12,7 @@
 
 ## Live Demo
 
-[Live Demo Link](https://felix45.github.io/breakout/)
+[Live Demo Link](https://felix45.github.io/Breakout/)
 
 ## Getting Started
 
@@ -68,7 +68,7 @@ Feel free to check the [issues page](https://github.com/Felix45/breakout/issues)
 Give a ⭐️ if you like this project!
 
 ## Acknowledgments
-
+- :heart: Special thanks to my late mum :heart: for buying me my first[Brick Game](https://bit.ly/3ueMaip)
 - Hat tip to [Microverse](https://bit.ly/MicroverseTN) for helping me keep the coding fire burning
 - Hat tip to [MixKit](https://mixkit.co/free-sound-effects/game/) for free game sound effects used in this project
 - Hat tip to [Freecodecamp Channel](https://www.youtube.com/c/Freecodecamp) for wonderful game tutorials used in this project
