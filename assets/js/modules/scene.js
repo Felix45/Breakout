@@ -1,11 +1,13 @@
 import GamePaddle from './paddle.js';
 import Ball from './ball.js';
-import { level1, buildLevel } from './levels.js';
+import {
+  level1, level2, level3, buildLevel,
+} from './levels.js';
 import ScoreBoard from './scoreboard.js';
 import EventHandlers from './input.js';
 
 const GAMESTATE = {
-  PAUSED: 0, RUNNING: 1, MENU: 2, GAMEOVER: 3, NEWLEVEL: 4,
+  PAUSED: 0, RUNNING: 1, MENU: 2, GAMEOVER: 3, WINNER: 4,
 };
 
 class Scene {
@@ -18,14 +20,15 @@ class Scene {
     this.paddle = new GamePaddle(Scene.SCENE_WIDTH, Scene.SCENE_HEIGHT);
     this.ball = new Ball(Scene.SCENE_WIDTH, Scene.SCENE_HEIGHT, this);
     this.scoreBoard = new ScoreBoard(this, Scene.SCENE_WIDTH, Scene.SCENE_HEIGHT);
-    this.brickwall = buildLevel(this, level1);
+    this.levels = [level1, level2, level3];
+    this.level = 0;
+    this.brickwall = buildLevel(this, this.levels[0]);
     this.gameObjects = [this.paddle, this.ball, this.scoreBoard];
     this.ctx = this.canvas.getContext('2d');
 
     this.gamestate = GAMESTATE.MENU;
     this.lives = 3;
     this.score = 0;
-
     EventHandlers.paddleHandler(this.paddle, this);
   }
 
@@ -39,7 +42,18 @@ class Scene {
       this.gamestate = GAMESTATE.GAMEOVER;
     }
 
+    if (this.brickwall.length === 0) {
+      if (this.level !== 2) {
+        this.level += 1;
+        this.brickwall = buildLevel(this, this.levels[this.level]);
+        this.ball.reset();
+      } else {
+        this.gamestate = GAMESTATE.WINNER;
+      }
+    }
+
     if (this.gamestate === GAMESTATE.PAUSED
+      || this.gamestate === GAMESTATE.WINNER
       || this.gamestate === GAMESTATE.MENU
       || this.gamestate === GAMESTATE.GAMEOVER) return;
 
@@ -60,7 +74,7 @@ class Scene {
       this.ctx.rect(0, 0, Scene.SCENE_WIDTH, Scene.SCENE_HEIGHT);
       this.ctx.fillStyle = 'rgba(0,0,0,0.8)';
       this.ctx.fill();
-      this.ctx.font = 'bold   30px courier';
+      this.ctx.font = '800 30px Poppins';
       this.ctx.fillStyle = '#ff0';
       this.ctx.textAlign = 'center';
       this.ctx.fillText('Paused', Scene.SCENE_WIDTH / 2, Scene.SCENE_HEIGHT / 2);
@@ -70,20 +84,33 @@ class Scene {
       this.ctx.rect(0, 0, Scene.SCENE_WIDTH, Scene.SCENE_HEIGHT);
       this.ctx.fillStyle = '#2a52be';
       this.ctx.fill();
-      this.ctx.font = 'bold 30px courier';
+      this.ctx.font = '800 30px Poppins';
       this.ctx.fillStyle = 'rgb(255,255,0)';
       this.ctx.textAlign = 'center';
-      this.ctx.fillText('Press spacebar to start', Scene.SCENE_WIDTH / 2, Scene.SCENE_HEIGHT / 2);
+      this.ctx.fillText('PRESS SPACEBAR TO START', Scene.SCENE_WIDTH / 2, Scene.SCENE_HEIGHT / 2 - 90);
+      this.ctx.fillText('USE', Scene.SCENE_WIDTH / 2, Scene.SCENE_HEIGHT / 2 - 40);
+      this.ctx.fillText('LEFT & RIGHT', Scene.SCENE_WIDTH / 2, Scene.SCENE_HEIGHT / 2 + 10);
+      this.ctx.fillText('ARROW KEYS TO PLAY', Scene.SCENE_WIDTH / 2, Scene.SCENE_HEIGHT / 2 + 50);
     }
 
     if (this.gamestate === GAMESTATE.GAMEOVER) {
       this.ctx.rect(0, 0, Scene.SCENE_WIDTH, Scene.SCENE_HEIGHT);
       this.ctx.fillStyle = '#2a52be';
       this.ctx.fill();
-      this.ctx.font = 'bold 30px courier';
+      this.ctx.font = '800 30px Poppins';
       this.ctx.fillStyle = 'rgb(255,255,0)';
       this.ctx.textAlign = 'center';
       this.ctx.fillText('Game Over !!!', Scene.SCENE_WIDTH / 2, Scene.SCENE_HEIGHT / 2);
+    }
+
+    if (this.gamestate === GAMESTATE.WINNER) {
+      this.ctx.rect(0, 0, Scene.SCENE_WIDTH, Scene.SCENE_HEIGHT);
+      this.ctx.fillStyle = '#2a52be';
+      this.ctx.fill();
+      this.ctx.font = '800 30px Poppins';
+      this.ctx.fillStyle = 'rgb(255,255,0)';
+      this.ctx.textAlign = 'center';
+      this.ctx.fillText('You Won !!!', Scene.SCENE_WIDTH / 2, Scene.SCENE_HEIGHT / 2);
     }
   }
 
