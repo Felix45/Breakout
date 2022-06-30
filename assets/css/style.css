@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -7,6 +9,7 @@
 :root {
   --gold: #ec5242;
   --dark: #000;
+  --white: #fff;
 }
 
 body {
@@ -18,7 +21,13 @@ img {
 }
 
 .container {
-  margin: 150px auto;
+  margin: 150px auto 50px;
   display: block;
   border: 10px solid var(--gold);
+}
+
+h2 {
+  color: var(--white);
+  font-weight: bold 16px 'Poppins', sans-serif;
+  text-align: center;
 }

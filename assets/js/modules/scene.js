@@ -60,7 +60,7 @@ class Scene {
       this.ctx.rect(0, 0, Scene.SCENE_WIDTH, Scene.SCENE_HEIGHT);
       this.ctx.fillStyle = 'rgba(0,0,0,0.8)';
       this.ctx.fill();
-      this.ctx.font = 'bold   30px courier';
+      this.ctx.font = '800 30px Poppins';
       this.ctx.fillStyle = '#ff0';
       this.ctx.textAlign = 'center';
       this.ctx.fillText('Paused', Scene.SCENE_WIDTH / 2, Scene.SCENE_HEIGHT / 2);
@@ -70,17 +70,20 @@ class Scene {
       this.ctx.rect(0, 0, Scene.SCENE_WIDTH, Scene.SCENE_HEIGHT);
       this.ctx.fillStyle = '#2a52be';
       this.ctx.fill();
-      this.ctx.font = 'bold 30px courier';
+      this.ctx.font = '800 30px Poppins';
       this.ctx.fillStyle = 'rgb(255,255,0)';
       this.ctx.textAlign = 'center';
-      this.ctx.fillText('Press spacebar to start', Scene.SCENE_WIDTH / 2, Scene.SCENE_HEIGHT / 2);
+      this.ctx.fillText('PRESS SPACEBAR TO START', Scene.SCENE_WIDTH / 2, Scene.SCENE_HEIGHT / 2 - 90);
+      this.ctx.fillText('USE', Scene.SCENE_WIDTH / 2, Scene.SCENE_HEIGHT / 2 - 40);
+      this.ctx.fillText('LEFT & RIGHT', Scene.SCENE_WIDTH / 2, Scene.SCENE_HEIGHT / 2 + 10);
+      this.ctx.fillText('ARROW KEYS TO PLAY', Scene.SCENE_WIDTH / 2, Scene.SCENE_HEIGHT / 2 + 50);
     }
 
     if (this.gamestate === GAMESTATE.GAMEOVER) {
       this.ctx.rect(0, 0, Scene.SCENE_WIDTH, Scene.SCENE_HEIGHT);
       this.ctx.fillStyle = '#2a52be';
       this.ctx.fill();
-      this.ctx.font = 'bold 30px courier';
+      this.ctx.font = '800 30px Poppins';
       this.ctx.fillStyle = 'rgb(255,255,0)';
       this.ctx.textAlign = 'center';
       this.ctx.fillText('Game Over !!!', Scene.SCENE_WIDTH / 2, Scene.SCENE_HEIGHT / 2);
